@@ -1,95 +1,72 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React, { useEffect, useState } from 'react';
+import { Navbar, NavbarContent, NavbarItem, Button } from '@nextui-org/react';
+import styles from './styles/page.module.css';
+import BUTON from './componente/button/index.jsx';
+import Personas from './Personas.js'; 
+import { Modal } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const direcciones = ['Estadisticas', 'Contacto'];
+  const [users, setUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    setUsers(Personas.results);
+  }, []);
+
+  /*FUNCIONES PARA EL MODAL*/
+  const openModal = (user) => {
+    setSelectedUser(user);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <main className={styles.main}>
+      <Navbar isBordered isBlurred={false} className={styles.stickyNavbar}>
+        <NavbarContent className={styles.navContent} justify="center">
+          {direcciones.map((direccion, index) => (
+            <NavbarItem key={index} className={styles.navbarItem}>
+              <BUTON direccion={direccion} />
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+      </Navbar>
+      <div>
+        <div className={styles.cardsContainer}>
+        {Personas.map((user, index) => (
+          <div key={index} className={styles.user}>
+            <h1>{user.nombre}</h1>
+            <h1>{user.apellido}</h1>
+            <Button className={styles.userButton} onClick={() => openModal(user)}>Ver más</Button>
+          </div>
+        ))}
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {selectedUser && (
+          <Modal show={showModal} onHide={closeModal}>
+            <Modal.Header className={styles.modalHeader} closeButton>
+              <Modal.Title className={styles.modalTitle}>Más información</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className={styles.modalBody}>
+              <h1>{selectedUser.nombre}</h1>
+              <h5>{selectedUser.apellido}</h5>
+              <p>Mail : {selectedUser.email}</p>
+              <p>Edad : {selectedUser.edad}</p>
+            </Modal.Body>
+            <Modal.Footer className={styles.modalFooter}>
+              <Button variant="secondary" onClick={closeModal}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
+      </div>
+    </main>
   );
 }
