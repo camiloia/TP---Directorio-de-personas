@@ -23,7 +23,7 @@ const Page = (props) => {
                 </div>
                 <div className={styles.inputContainer}>
                   <label>Mensaje</label>
-                  <textarea className={styles.textarea} placeholder="Ingrese su mensaje"></textarea>
+                  <textarea className={styles.textarea} ></textarea>
                 </div>
                 <Button className={styles.button}>Enviar</Button>
               </form>

@@ -18,15 +18,17 @@
 }
 
 /* Navbar Styles */
+
 .stickyNavbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
-  padding: 10px 20px;
+  padding: 10px 200px; 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
+  margin: 0; 
 }
 
 .stickyNavbar:hover {
@@ -37,39 +39,42 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  padding: 0;
+  margin: 0; 
+
+
 }
 
 .navbarItem {
   display: flex;
   align-items: center;
+  border: #fde0fc solid 2px;
+  border-radius: 10%;
+  font-weight: bolder;
+  margin: 0; 
 }
 
 .navbarItem a {
-  color: #007bff;
+  color: #000000;
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 6px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: bolder;
   transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  display: inline-block; 
 }
 
 .navbarItem a:hover {
-  background-color: #e0f7ff;
-  color: #0056b3;
+  background-color: #fde0fc;
+  color: #c909af;
   transform: translateY(-2px);
 }
 
 .navbarItem.isActive a {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #ff76e8;
   font-weight: 600;
 }
-
-
-
-
-/* User Card Styles */
 .user {
   background-color: #ffffff;
   border: 1px solid #ddd;
@@ -81,6 +86,7 @@
   text-align: center;
   width: 100%;
   max-width: 300px;
+  border: #f5aaff solid 0.5px;
 }
 
 .user h1 {
@@ -89,24 +95,20 @@
   color: #333;
 }
 
-.user h1:last-of-type {
-  font-size: 1.1em;
-  color: #555;
-}
-
 .userButton {
   margin-top: 10px;
-  background-color: #007bff;
+  background-color: #ffe6fe;
   color: #ffffff;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  color: black;
 }
 
 .userButton:hover {
-  background-color: #0056b3;
+  background-color: #683b66;
 }
 
 /* Modal Styles */
@@ -134,7 +136,7 @@
 .EST_1 {
   font-weight: bolder;
   font-size: 4rem;
-  color: #e31afd;
+  color: #cc6cc9;
   margin-bottom: 2rem;
 }
 
@@ -161,6 +163,7 @@
     gap: 20px;
     justify-content: center;
     margin-bottom: 6rem;
+    padding: 80px;
   }
 
   .card {
@@ -500,7 +503,7 @@
 }
 
 .divisorCard {
-  border: 5px solid #e31afd;
+  border: 5px solid #d675d3;
   border-radius: 5px;
   width: 60%;
 }
@@ -516,7 +519,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 2rem; /* Aumentar padding para más espacio interno */
+  padding: 2rem; 
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #e0e0e0;

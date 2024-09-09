@@ -29,15 +29,17 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Navbar isBordered isBlurred={false} className={styles.stickyNavbar}>
-        <NavbarContent className={styles.navContent} justify="center">
-          {direcciones.map((direccion, index) => (
-            <NavbarItem key={index} className={styles.navbarItem}>
-              <BUTON direccion={direccion} />
-            </NavbarItem>
-          ))}
-        </NavbarContent>
-      </Navbar>
+     <Navbar isBordered isBlurred={false} className={styles.stickyNavbar}>
+    <NavbarContent className={styles.navContent} justify="center">
+      {direcciones.map((direccion, index) => (
+        <NavbarItem key={index} className={styles.navbarItem}>
+          <BUTON direccion={direccion} />
+        </NavbarItem>
+      ))}
+    </NavbarContent>
+  </Navbar>
+
+
       <div>
         <div className={styles.cardsContainer}>
         {Personas.map((user, index) => (

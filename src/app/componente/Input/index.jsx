@@ -20,7 +20,7 @@ const Input = (props) => {
           id={props.titulo}
           name={props.titulo}
           required
-          style={{width: "100%", maxWidth: "1500px" }} // Ajusta el estilo según sea necesario
+          style={{width: "100%", maxWidth: "1500px", height: "30px" }} // Ajusta el estilo según sea necesario
         />
       )}
     </>
